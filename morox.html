@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Morox - Your Personal AI Mentor</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'neon-blue': '#00f5ff',
+                        'neon-purple': '#bf00ff',
+                        'neon-green': '#39ff14',
+                        'dark-bg': '#0a0a0a',
+                        'dark-card': '#1a1a1a'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .glow {
+            box-shadow: 0 0 20px rgba(0, 245, 255, 0.5);
+        }
+        .glow-purple {
+            box-shadow: 0 0 20px rgba(191, 0, 255, 0.5);
+        }
+        .glow-green {
+            box-shadow: 0 0 20px rgba(57, 255, 20, 0.5);
+        }
+        .gradient-text {
+            background: linear-gradient(45deg, #00f5ff, #bf00ff, #39ff14);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .floating {
+            animation: float 6s ease-in-out infinite;
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+        .fade-in {
+            animation: fadeIn 1s ease-in;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body class="bg-dark-bg text-white font-sans">
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full bg-dark-bg/90 backdrop-blur-sm z-50 border-b border-neon-blue/20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center py-4">
+                <div class="flex items-center space-x-2">
+                    <div class="w-10 h-10 bg-gradient-to-r from-neon-blue to-neon-purple rounded-full flex items-center justify-center">
+                        <span class="text-xl font-bold">M</span>
+                    </div>
+                    <span class="text-2xl font-bold gradient-text">MOROX</span>
+                </div>
+                <div class="hidden md:flex space-x-8">
+                    <a href="#home" class="hover:text-neon-blue transition-colors">Home</a>
+                    <a href="#about" class="hover:text-neon-blue transition-colors">About</a>
+                    <a href="#courses" class="hover:text-neon-blue transition-colors">Courses</a>
+                    <a href="#blog" class="hover:text-neon-blue transition-colors">Blog</a>
+                    <a href="#testimonials" class="hover:text-neon-blue transition-colors">Testimonials</a>
+                    <a href="#contact" class="hover:text-neon-blue transition-colors">Contact</a>
+                </div>
+                <button class="md:hidden text-neon-blue" onclick="toggleMobileMenu()">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobileMenu" class="hidden md:hidden bg-dark-card border-t border-neon-blue/20">
+            <div class="px-4 py-2 space-y-2">
+                <a href="#home" class="block py-2 hover:text-neon-blue transition-colors">Home</a>
+                <a href="#about" class="block py-2 hover:text-neon-blue transition-colors">About</a>
+                <a href="#courses" class="block py-2 hover:text-neon-blue transition-colors">Courses</a>
+                <a href="#blog" class="block py-2 hover:text-neon-blue transition-colors">Blog</a>
+                <a href="#testimonials" class="block py-2 hover:text-neon-blue transition-colors">Testimonials</a>
+                <a href="#contact" class="block py-2 hover:text-neon-blue transition-colors">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="min-h-screen flex items-center justify-center pt-20 px-4">
+        <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 items-center">
+            <div class="fade-in">
+                <h1 class="text-5xl md:text-7xl font-bold mb-6">
+                    <span class="gradient-text">MOROX</span><br>
+                    <span class="text-white">Your Personal</span><br>
+                    <span class="text-neon-blue">AI Mentor</span>
+                </h1>
+                <p class="text-xl text-gray-300 mb-8 leading-relaxed">
+                      Unlock the power of artificial intelligence with personalized learning experiences. 
+                      From foundational concepts to advanced applications, Morox makes AI accessible to everyone.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4">
+                    <button class="bg-gradient-to-r from-neon-blue to-neon-purple px-8 py-4 rounded-lg font-semibold hover:glow transition-all duration-300 transform hover:scale-105">
+                        Start Your AI Journey
+                    </button>
+                    <button class="border-2 border-neon-green px-8 py-4 rounded-lg font-semibold hover:bg-neon-green hover:text-black transition-all duration-300">
+                        Meet Morox
+                    </button>
+                </div>
+            </div>
+            <div class="flex justify-center">
+                <div class="floating">
+                    <!-- Morox Avatar SVG -->
+                    <svg width="400" height="400" viewBox="0 0 400 400" class="glow">
+                        <!-- Robot Head -->
+                        <rect x="100" y="80" width="200" height="180" rx="20" fill="url(#gradient1)" stroke="#00f5ff" stroke-width="2"/>
+                        
+                        <!-- Eyes -->
+                        <circle cx="140" cy="140" r="15" fill="#00f5ff" class="animate-pulse"/>
+                        <circle cx="260" cy="140" r="15" fill="#00f5ff" class="animate-pulse"/>
+                        
+                        <!-- Mouth -->
+                        <rect x="170" y="180" width="60" height="8" rx="4" fill="#39ff14"/>
+                        
+                        <!-- Antenna -->
+                        <line x1="200" y1="80" x2="200" x2="40" stroke="#bf00ff" stroke-width="3"/>
+                        <circle cx="200" cy="40" r="8" fill="#bf00ff" class="animate-pulse"/>
+                        
+                        <!-- Body -->
+                        <rect x="120" y="260" width="160" height="120" rx="15" fill="url(#gradient2)" stroke="#00f5ff" stroke-width="2"/>
+                        
+                        <!-- Arms -->
+                        <rect x="60" y="280" width="60" height="20" rx="10" fill="url(#gradient1)" stroke="#00f5ff" stroke-width="1"/>
+                        <rect x="280" y="280" width="60" height="20" rx="10" fill="url(#gradient1)" stroke="#00f5ff" stroke-width="1"/>
+                        
+                        <!-- Chest Panel -->
+                        <rect x="160" y="300" width="80" height="40" rx="8" fill="#1a1a1a" stroke="#39ff14" stroke-width="1"/>
+                        <circle cx="180" cy="320" r="4" fill="#39ff14"/>
+                        <circle cx="200" cy="320" r="4" fill="#bf00ff"/>
+                        <circle cx="220" cy="320" r="4" fill="#00f5ff"/>
+                        
+                        <defs>
+                            <linearGradient id="gradient1" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#2a2a2a"/>
+                                <stop offset="100%" style="stop-color:#1a1a1a"/>
+                            </linearGradient>
+                            <linearGradient id="gradient2" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#3a3a3a"/>
+                                <stop offset="100%" style="stop-color:#2a2a2a"/>
+                            </linearGradient>
+                        </defs>
+                    </svg>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Key Features -->
+    <section class="py-20 px-4 bg-dark-card/50">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="text-4xl font-bold text-center mb-16 gradient-text">Why Choose Morox?</h2>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-dark-card p-8 rounded-lg border border-neon-blue/20 hover:glow transition-all duration-300">
+                    <div class="text-4xl mb-4">🧠</div>
+                    <h3 class="text-2xl font-bold mb-4 text-neon-blue">Simplified AI Concepts</h3>
+                    <p class="text-gray-300">Complex AI topics broken down into digestible, easy-to-understand lessons that anyone can follow.</p>
+                </div>
+                <div class="bg-dark-card p-8 rounded-lg border border-neon-purple/20 hover:glow-purple transition-all duration-300">
+                    <div class="text-4xl mb-4">🎯</div>
+                    <h3 class="text-2xl font-bold mb-4 text-neon-purple">Interactive Learning</h3>
+                    <p class="text-gray-300">Hands-on exercises, real-world projects, and interactive demonstrations to reinforce your learning.</p>
+                </div>
+                <div class="bg-dark-card p-8 rounded-lg border border-neon-green/20 hover:glow-green transition-all duration-300">
+                    <div class="text-4xl mb-4">👤</div>
+                    <h3 class="text-2xl font-bold mb-4 text-neon-green">Personalized Lessons</h3>
+                    <p class="text-gray-300">Adaptive learning paths tailored to your skill level, interests, and career goals.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Morox -->
+    <section id="about" class="py-20 px-4">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div>
+                    <h2 class="text-4xl font-bold mb-8 gradient-text">Meet Morox</h2>
+                    <p class="text-xl text-gray-300 mb-6 leading-relaxed">
+                        Born from a vision to democratize AI education, Morox is more than just a mentor – 
+                        he's your dedicated guide through the fascinating world of artificial intelligence.
+                    </p>
+                    <p class="text-lg text-gray-400 mb-6">
+                        With a passion for teaching and a deep understanding of AI complexities, 
+                        Morox transforms intimidating concepts into exciting learning adventures.
+                    </p>
+                    <div class="space-y-4">
+                        <div class="flex items-center space-x-3">
+                            <div class="w-2 h-2 bg-neon-blue rounded-full"></div>
+                            <span>Making AI accessible to everyone</span>
+                        </div>
+                        <div class="flex items-center space-x-3">
+                            <div class="w-2 h-2 bg-neon-purple rounded-full"></div>
+                            <span>Bridging the gap between theory and practice</span>
+                        </div>
+                        <div class="flex items-center space-x-3">
+                            <div class="w-2 h-2 bg-neon-green rounded-full"></div>
+                            <span>Empowering the next generation of AI innovators</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex justify-center">
+                    <div class="bg-dark-card p-8 rounded-lg border border-neon-blue/20 glow">
+                        <div class="text-center">
+                            <div class="w-32 h-32 bg-gradient-to-r from-neon-blue to-neon-purple rounded-full mx-auto mb-6 flex items-center justify-center text-4xl">
+                                🤖
+                            </div>
+                            <h3 class="text-2xl font-bold mb-4">Morox's Mission</h3>
+                            <p class="text-gray-300">
+                                "To make artificial intelligence education engaging, accessible, 
+                                and transformative for learners at every level."
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Courses Section -->
+    <section id="courses" class="py-20 px-4 bg-dark-card/50">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="text-4xl font-bold text-center mb-16 gradient-text">Learning Paths</h2>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-dark-card p-8 rounded-lg border border-neon-blue/20 hover:glow transition-all duration-300">
+                    <h3 class="text-2xl font-bold mb-4 text-neon-blue">Beginner's Path</h3>
+                    <p class="text-gray-300 mb-6">Perfect for those new to AI. Start with fundamentals and build your foundation.</p>
+                    <ul class="space-y-2 mb-6">
+                        <li class="flex items-center space-x-2">
+                            <div class="w-2 h-2 bg-neon-blue rounded-full"></div>
+                            <span class="text-sm">What is AI?</span>
+                        </li>
+                        <li class="flex items-center space-x-2">
+                            <div class="w-2 h-2 bg-neon-blue rounded-full"></div>
+                            <span class="text-sm">Machine Learning Basics</span>
+                        </li>
+                        <li class="flex items-center space-x-2">
+                            <div class="w-2 h-2 bg-neon-blue rounded-full"></div>
+                            <span class="text-sm">AI in Daily Life</span>
+                        </li>
+                    </ul>
+                    <button class="w-full bg-neon-blue text-black py-3 rounded-lg font-semibold hover:bg-neon-blue/80 transition-colors">
+                        Start Learning
+                    </button>
+                </div>
+                <div class="bg-dark-card p-8 rounded-lg border border-neon-purple/20 hover:glow-purple transition-all duration-300">
+                    <h3 class="text-2xl font-bold mb-4 text-neon-purple">Career in AI</h3>
+                    <p class="text-gray-300 mb-6">Advanced concepts and practical skills for AI professionals.</p>
+                    <ul class="space-y-2 mb-6">
+                        <li class="flex items-center space-x-2">
+                            <div class="w-2 h-2 bg-neon-purple rounded-full"></div>
+                            <span class="text-sm">Deep Learning</span>
+                        </li>
+                        <li class="flex items-center space-x-2">
+                            <div class="w-2 h-2 bg-neon-purple rounded-full"></div>
+                            <span class="text-sm">Neural Networks</span>
+                        </li>
+                        <li class="flex items-center space-x-2">
+                            <div class="w-2 h-2 bg-neon-purple rounded-full"></div>
+                            <span class="text-sm">AI Ethics</span>
+                        </li>
+                    </ul>
+                    <button class="w-full bg-neon-purple text-white py-3 rounded-lg font-semibold hover:bg-neon-purple/80 transition-colors">
+                        Explore Path
+                    </button>
+                </div>
+                <div class="bg-dark-card p-8 rounded-lg border border-neon-green/20 hover:glow-green transition-all duration-300">
+                    <h3 class="text-2xl font-bold mb-4 text-neon-green">Data Science Basics</h3>
+                    <p class="text-gray-300 mb-6">Learn how data powers AI and machine learning applications.</p>
+                    <ul class="space-y-2 mb-6">
+                        <li class="flex items-center space-x-2">
+                            <div class="w-2 h-2 bg-neon-green rounded-full"></div>
+                            <span class="text-sm">Data Analysis</span>
+                        </li>
+                        <li class="flex items-center space-x-2">
+                            <div class="w-2 h-2 bg-neon-green rounded-full"></div>
+                            <span class="text-sm">Statistics for AI</span>
+                        </li>
+                        <li class="flex items-center space-x-2">
+                            <div class="w-2 h-2 bg-neon-green rounded-full"></div>
+                            <span class="text-sm">Data Visualization</span>
+                        </li>
+                    </ul>
+                    <button class="w-full bg-neon-green text-black py-3 rounded-lg font-semibold hover:bg-neon-green/80 transition-colors">
+                        Begin Journey
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog Section -->
+    <section id="blog" class="py-20 px-4">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="text-4xl font-bold text-center mb-16 gradient-text">Latest from Morox</h2>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <article class="bg-dark-card p-6 rounded-lg border border-neon-blue/20 hover:glow transition-all duration-300">
+                    <div class="text-3xl mb-4">🚀</div>
+                    <h3 class="text-xl font-bold mb-3 text-neon-blue">The Future of AI in 2024</h3>
+                    <p class="text-gray-300 mb-4">Exploring the latest trends and breakthroughs shaping artificial intelligence...</p>
+                    <button class="text-neon-blue hover:underline">Read More →</button>
+                </article>
+                <article class="bg-dark-card p-6 rounded-lg border border-neon-purple/20 hover:glow-purple transition-all duration-300">
+                    <div class="text-3xl mb-4">🎯</div>
+                    <h3 class="text-xl font-bold mb-3 text-neon-purple">Getting Started with Machine Learning</h3>
+                    <p class="text-gray-300 mb-4">A beginner's guide to understanding the fundamentals of ML...</p>
+                    <button class="text-neon-purple hover:underline">Read More →</button>
+                </article>
+                <article class="bg-dark-card p-6 rounded-lg border border-neon-green/20 hover:glow-green transition-all duration-300">
+                    <div class="text-3xl mb-4">🧠</div>
+                    <h3 class="text-xl font-bold mb-3 text-neon-green">AI Ethics: Building Responsible Systems</h3>
+                    <p class="text-gray-300 mb-4">Understanding the importance of ethical considerations in AI development...</p>
+                    <button class="text-neon-green hover:underline">Read More →</button>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section id="testimonials" class="py-20 px-4 bg-dark-card/50">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="text-4xl font-bold text-center mb-16 gradient-text">Success Stories</h2>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-dark-card p-8 rounded-lg border border-neon-blue/20">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-gradient-to-r from-neon-blue to-neon-purple rounded-full flex items-center justify-center mr-4">
+                            <span class="font-bold">S</span>
+                        </div>
+                        <div>
+                            <h4 class="font-bold">Sarah Chen</h4>
+                            <p class="text-sm text-gray-400">Data Scientist</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-300">"Morox transformed my understanding of AI. The personalized approach made complex concepts feel approachable and exciting!"</p>
+                </div>
+                <div class="bg-dark-card p-8 rounded-lg border border-neon-purple/20">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-gradient-to-r from-neon-purple to-neon-green rounded-full flex items-center justify-center mr-4">
+                            <span class="font-bold">M</span>
+                        </div>
+                        <div>
+                            <h4 class="font-bold">Marcus Johnson</h4>
+                            <p class="text-sm text-gray-400">Software Engineer</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-300">"From zero AI knowledge to building my first ML model in just 3 months. Morox's teaching style is incredible!"</p>
+                </div>
+                <div class="bg-dark-card p-8 rounded-lg border border-neon-green/20">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-gradient-to-r from-neon-green to-neon-blue rounded-full flex items-center justify-center mr-4">
+                            <span class="font-bold">A</span>
+                        </div>
+                        <div>
+                            <h4 class="font-bold">Aisha Patel</h4>
+                            <p class="text-sm text-gray-400">Product Manager</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-300">"The interactive lessons and real-world examples helped me integrate AI thinking into my product strategy."</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 px-4">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="text-4xl font-bold text-center mb-16 gradient-text">Get in Touch</h2>
+            <div class="bg-dark-card p-8 rounded-lg border border-neon-blue/20 glow">
+                <p class="text-center text-gray-300 mb-8">Ready to start your AI journey? Have questions about our courses? Morox is here to help!</p>
+                <form class="space-y-6">
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-sm font-medium mb-2">Name</label>
+                            <input type="text" class="w-full bg-dark-bg border border-neon-blue/30 rounded-lg px-4 py-3 focus:border-neon-blue focus:outline-none transition-colors" placeholder="Your name">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium mb-2">Email</label>
+                            <input type="email" class="w-full bg-dark-bg border border-neon-blue/30 rounded-lg px-4 py-3 focus:border-neon-blue focus:outline-none transition-colors" placeholder="your@email.com">
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium mb-2">Subject</label>
+                        <input type="text" class="w-full bg-dark-bg border border-neon-blue/30 rounded-lg px-4 py-3 focus:border-neon-blue focus:outline-none transition-colors" placeholder="What's this about?">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium mb-2">Message</label>
+                        <textarea rows="5" class="w-full bg-dark-bg border border-neon-blue/30 rounded-lg px-4 py-3 focus:border-neon-blue focus:outline-none transition-colors" placeholder="Tell Morox about your AI learning goals..."></textarea>
+                    </div>
+                    <div class="text-center">
+                        <button type="submit" class="bg-gradient-to-r from-neon-blue to-neon-purple px-8 py-4 rounded-lg font-semibold hover:glow transition-all duration-300 transform hover:scale-105">
+                            Send Message to Morox
+                        </button>
+                    </div>
+                </form>
+                <div class="mt-8 p-4 bg-neon-blue/10 border border-neon-blue/30 rounded-lg">
+                    <p class="text-center text-sm text-neon-blue">
+                        <strong>Demo Contact Form:</strong> This is a sample form for demonstration purposes. 
+                        In a live website, this would connect to a backend service to send emails.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark-card border-t border-neon-blue/20 py-12 px-4">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid md:grid-cols-4 gap-8">
+                <div>
+                    <div class="flex items-center space-x-2 mb-4">
+                        <div class="w-10 h-10 bg-gradient-to-r from-neon-blue to-neon-purple rounded-full flex items-center justify-center">
+                            <span class="text-xl font-bold">M</span>
+                        </div>
+                        <span class="text-2xl font-bold gradient-text">MOROX</span>
+                    </div>
+                    <p class="text-gray-400">Your personal AI mentor, making artificial intelligence accessible to everyone.</p>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4 text-neon-blue">Learning</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="#" class="hover:text-neon-blue transition-colors">Beginner's Path</a></li>
+                        <li><a href="#" class="hover:text-neon-blue transition-colors">Career in AI</a></li>
+                        <li><a href="#" class="hover:text-neon-blue transition-colors">Data Science</a></li>
+                        <li><a href="#" class="hover:text-neon-blue transition-colors">AI Glossary</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4 text-neon-purple">Resources</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="#" class="hover:text-neon-purple transition-colors">Blog</a></li>
+                        <li><a href="#" class="hover:text-neon-purple transition-colors">Tutorials</a></li>
+                        <li><a href="#" class="hover:text-neon-purple transition-colors">Guides</a></li>
+                        <li><a href="#" class="hover:text-neon-purple transition-colors">Success Stories</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4 text-neon-green">Connect</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="#" class="hover:text-neon-green transition-colors">Contact Us</a></li>
+                        <li><a href="#" class="hover:text-neon-green transition-colors">Community</a></li>
+                        <li><a href="#" class="hover:text-neon-green transition-colors">Newsletter</a></li>
+                        <li><a href="#" class="hover:text-neon-green transition-colors">Support</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-neon-blue/20 mt-8 pt-8 text-center text-gray-400">
+                <p>&copy; 2024 Morox AI Mentor. Making AI accessible to everyone.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobileMenu');
+            menu.classList.toggle('hidden');
+        }
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+                // Close mobile menu if open
+                document.getElementById('mobileMenu').classList.add('hidden');
+            });
+        });
+
+        // Add scroll effect to navigation
+        window.addEventListener('scroll', function() {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 100) {
+                nav.classList.add('bg-dark-bg');
+            } else {
+                nav.classList.remove('bg-dark-bg');
+            }
+        });
+
+        // Form submission handler
+        document.querySelector('form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thank you for your message! This is a demo form. In a real website, your message would be sent to Morox.');
+        });
+
+        // Add intersection observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('fade-in');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all sections
+        document.querySelectorAll('section').forEach(section => {
+            observer.observe(section);
+        });
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'97108cec45c8ed63',t:'MTc1NTUxMTA4My4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
